@@ -1,0 +1,39 @@
+---
+import { Moon, Sun } from '@lucide/astro';
+---
+
+<button id="theme-button" type="button" class="p-1.5 cursor-pointer" aria-label="Cambiar tema">
+  <Sun id="icon-sun" size={36} />
+  <Moon id="icon-moon" size={36} class="hidden" />
+</button>
+
+<script is:inline>
+  const button = document.getElementById('theme-button');
+  const sun = document.getElementById('icon-sun');
+  const moon = document.getElementById('icon-moon');
+
+  const getInitialTheme = () => {
+    const saved = window.localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const applyTheme = (theme) => {
+    const root = document.documentElement;
+    root.classList.toggle('dark', theme === 'dark');
+    window.localStorage.setItem('theme', theme);
+
+    if (sun && moon) {
+      sun.classList.toggle('hidden', theme === 'dark');
+      moon.classList.toggle('hidden', theme !== 'dark');
+    }
+  };
+
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    applyTheme(isDark ? 'light' : 'dark');
+  };
+
+  applyTheme(getInitialTheme());
+  button?.addEventListener('click', toggleTheme);
+</script>

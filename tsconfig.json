@@ -1,0 +1,16 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@Layout/*": ["./src/Layout/*"],
+      "@shared/*": ["./src/shared/*"]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+---
+import ThemeIcon from "@components/ThemeIcon.astro";
+import NavMenu from "./NavMenu.astro";
+import menuData from "./menuData.json";
+import Button from "@shared/components/Button.astro";
+---
+
+<header class="header flex items-center justify-between w-full py-4 px-30 shadow  shadow-secondary/10 neutral-600  bg-primary">
+    <p class="header-logo font-bold text-xl">JB</p>
+    <div class="header-container flex gap-5 items-center">
+        <NavMenu {menuData}/>
+            <ThemeIcon/>
+        <Button label="Descargar CV" href="/docs/miCv.pdf"/>
+    </div>
+</header>
